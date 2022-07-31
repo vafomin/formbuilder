@@ -1,4 +1,5 @@
 import Input from "../../input";
+import List from "../../list";
 import Button from "../../button";
 import { useStore } from "../../../hooks/useStore";
 import { useForm } from "react-hook-form";
@@ -16,6 +17,7 @@ const AddInput = ({ el, item, onClose }) => {
       name: item?.name || "",
       required: item?.required || false,
       placeholder: item?.placeholder || "",
+      type: item?.type || "text",
     },
   });
 
@@ -27,6 +29,7 @@ const AddInput = ({ el, item, onClose }) => {
       name: data.name,
       required: data.required,
       placeholder: data.placeholder,
+      type: data.type,
     };
 
     if (item) setItem(field);
@@ -67,6 +70,12 @@ const AddInput = ({ el, item, onClose }) => {
         {...register("placeholder")}
       />
 
+      <List
+        label="Type"
+        name="type"
+        options={["text", "email", "number", "tel"]}
+        {...register("type", { required: true })}
+      />
       <div className="flex flex-col gap-4 pt-4 sm:flex-row">
         <Button label="Save" onClick={handleSubmit(onSave)} />
         <Button label="Close" onClick={onClose} />

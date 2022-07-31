@@ -7,7 +7,6 @@ import { downloadHTML } from "./utils";
 const App = () => {
   const formRef = useRef(null);
 
-  console.log(formRef);
   return (
     <div className="flex-col sm:flex">
       <Editor onDownload={() => downloadHTML(formRef.current.innerHTML)} />

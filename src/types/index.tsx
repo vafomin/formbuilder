@@ -4,6 +4,7 @@ export interface IForm {
   label: string;
   name?: string;
   placeholder?: string;
+  type?: string;
   options?: string[];
 }
 

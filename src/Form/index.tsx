@@ -27,6 +27,7 @@ const Form = ({ formRef }) => {
                       name={item.name}
                       label={item.label}
                       placeholder={item.placeholder}
+                      type={item.type}
                     />
                   );
                 case "checkbox":
