@@ -4,20 +4,22 @@ type ListProps = {
   name: string;
   label: string;
   options: string[];
+  required?: boolean;
 };
 
 const List: React.FC<ListProps> = React.forwardRef(
   (
-    { name, label, options, ...rest },
+    { name, label, options, required = false, ...rest },
     ref: React.RefObject<HTMLSelectElement>
   ) => {
     return (
       <div>
         <label
           htmlFor={name}
-          className="block text-sm font-medium text-gray-700"
+          className="flex text-sm font-medium text-gray-700"
         >
           {label}
+          {required && <p className="text-red-500">*</p>}
         </label>
         <select
           name={name}

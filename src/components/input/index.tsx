@@ -6,11 +6,20 @@ type InputProps = {
   type?: string;
   placeholder?: string;
   hasErrors?: boolean;
+  required?: boolean;
 };
 
 const Input: React.FC<InputProps> = React.forwardRef(
   (
-    { label, name, type = "text", placeholder = "", hasErrors, ...rest },
+    {
+      label,
+      name,
+      type = "text",
+      placeholder = "",
+      hasErrors,
+      required = false,
+      ...rest
+    },
     ref: React.RefObject<HTMLInputElement>
   ) => {
     const inputClass = hasErrors
@@ -21,9 +30,10 @@ const Input: React.FC<InputProps> = React.forwardRef(
       <div>
         <label
           htmlFor={name}
-          className="block text-sm font-medium text-gray-700"
+          className="flex text-sm font-medium text-gray-700"
         >
           {label}
+          {required && <p className="text-red-500">*</p>}
         </label>
         <div className="mt-1">
           <input

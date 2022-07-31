@@ -28,6 +28,7 @@ const Form = ({ formRef }) => {
                       label={item.label}
                       placeholder={item.placeholder}
                       type={item.type}
+                      required={item.required}
                     />
                   );
                 case "checkbox":
@@ -36,6 +37,7 @@ const Form = ({ formRef }) => {
                       key={`form_element_${index}`}
                       name={item.name}
                       label={item.label}
+                      required={item.required}
                     />
                   );
 
@@ -46,6 +48,7 @@ const Form = ({ formRef }) => {
                       name={item.name}
                       label={item.label}
                       options={item.options}
+                      required={item.required}
                     />
                   );
               }
