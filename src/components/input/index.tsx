@@ -41,6 +41,7 @@ const Input: React.FC<InputProps> = React.forwardRef(
             name={name}
             className={`shadow-sm block w-full sm:text-sm border-gray-300 rounded-md ${inputClass}`}
             placeholder={placeholder}
+            required={required}
             ref={ref}
             {...rest}
           />

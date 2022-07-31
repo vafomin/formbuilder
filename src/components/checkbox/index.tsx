@@ -14,6 +14,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
       <input
         type="checkbox"
         name={name}
+        required={required}
         className="bg-white bg-check h-6 w-6 border border-gray-300 rounded-md checked:bg-indigo-500 checked:border-transparent focus:outline-none"
       />
       <span className="flex text-gray-700 font-normal">

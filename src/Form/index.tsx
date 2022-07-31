@@ -17,7 +17,12 @@ const Form = ({ formRef }) => {
         {formLength === 0 ? (
           <h1>Looks like you haven't created a form yet...</h1>
         ) : (
-          <div id="form" className="flex flex-col gap-4 w-96" ref={formRef}>
+          <form
+            action=""
+            id="form"
+            className="flex flex-col gap-4 w-96"
+            ref={formRef}
+          >
             {form.map((item: IForm, index: number) => {
               switch (item.element) {
                 case "input":
@@ -60,7 +65,7 @@ const Form = ({ formRef }) => {
                   <Button key={`form_element_${index}`} label={item.label} />
                 )
             )}
-          </div>
+          </form>
         )}
       </div>
     </main>
