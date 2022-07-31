@@ -18,7 +18,7 @@ const AddList = ({ el, item, onClose }) => {
       label: item?.label || "",
       name: item?.name || "",
       required: item?.required || false,
-      options: item?.options || ["Option 1"],
+      options: item?.options || ["Option 1", "Option 2", "Option 3"],
     },
   });
   const { fields, append, remove } = useFieldArray({
@@ -87,7 +87,7 @@ const AddList = ({ el, item, onClose }) => {
 
         <p
           className="underline decoration-dotted select-none cursor-pointer"
-          onClick={() => append(`Option ${fields.length + 1}`)}
+          onClick={() => append("Option")}
         >
           Add option +
         </p>
