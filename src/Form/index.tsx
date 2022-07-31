@@ -11,7 +11,7 @@ const Form = ({ formRef }) => {
   const { form, formLength } = formStore;
 
   return (
-    <main className="flex flex-col gap-4 mr-4/12 p-10 w-96">
+    <main className="flex flex-col gap-4 p-10 w-96 sm:mr-4/12">
       <h1 className="text-4xl">Form</h1>
       <div className="flex">
         {formLength === 0 ? (

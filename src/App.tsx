@@ -9,7 +9,7 @@ const App = () => {
 
   console.log(formRef);
   return (
-    <div className="flex">
+    <div className="flex-col sm:flex">
       <Editor onDownload={() => downloadHTML(formRef.current.innerHTML)} />
       <Form formRef={formRef} />
     </div>

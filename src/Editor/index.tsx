@@ -41,7 +41,7 @@ const Editor = ({ onDownload }) => {
   };
 
   return (
-    <aside className="w-4/12 fixed right-0 top-0 h-screen bg-slate-700 p-10 overflow-auto">
+    <aside className="flex flex-col sm:w-4/12 sm:fixed sm:right-0 sm:top-0 sm:h-screen bg-slate-700 p-10 overflow-auto">
       <h1 className="text-white text-4xl mb-4">Editor</h1>
       {form &&
         form.map((item) => (
