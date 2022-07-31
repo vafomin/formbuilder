@@ -49,6 +49,7 @@ const Editor = ({ onDownload }) => {
             key={`${item.id}_element_${item.element}`}
             id={item.id}
             name={item.element === "button" ? item.label : item.name}
+            type={item.element}
             onEdit={() => onEdit(item.id)}
             onDelete={() => onDelete(item.id)}
           />
