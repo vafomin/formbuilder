@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useRef } from "react";
+import { observer } from "mobx-react";
+import Editor from "./Editor";
+import Form from "./Form";
 
-function App() {
+import { downloadHTML } from "./utils";
+const App = () => {
+  const formRef = useRef(null);
+
+  console.log(formRef);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex">
+      <Editor onDownload={() => downloadHTML(formRef.current.innerHTML)} />
+      <Form formRef={formRef} />
     </div>
   );
-}
+};
 
-export default App;
+export default observer(App);
