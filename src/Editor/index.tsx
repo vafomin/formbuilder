@@ -18,7 +18,7 @@ const Editor = ({ onDownload }) => {
   const [currentEl, setCurrentEl] = useState("");
 
   const { formStore } = useStore();
-  const { form, deleteItem } = formStore;
+  const { form, formLength, deleteItem } = formStore;
 
   const onShowModal = (el?: string) => {
     setIsModalVisible(true);
@@ -90,6 +90,7 @@ const Editor = ({ onDownload }) => {
         icon={<FaDownload />}
         className="mt-4"
         onClick={onDownload}
+        disabled={formLength === 0}
       />
 
       <Modal
