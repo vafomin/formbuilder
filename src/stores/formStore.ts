@@ -21,10 +21,16 @@ class FormStore {
     this.form = this.form.filter((item) => item.id !== id);
   };
 
-  isUniqueName = (name: string) => {
+  isUniqueName = (name: string, id: string) => {
     if (this.formIsEmpty) return true;
     const index = this.form.findIndex((item) => item.name === name);
-    return index >= 0 ? false : true;
+
+    if (id) {
+      const elIndex = this.form.findIndex((item) => item.id === id);
+      return index !== -1 && elIndex !== index ? false : true;
+    }
+
+    return index !== -1 ? false : true;
   };
 
   getItemById = (id: string) => {

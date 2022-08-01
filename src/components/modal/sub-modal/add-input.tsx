@@ -45,7 +45,10 @@ const AddInput = ({ el, item, onClose }) => {
         name="name"
         placeholder="Enter name..."
         hasErrors={errors.name ? true : false}
-        {...register("name", { required: true, validate: isUniqueName })}
+        {...register("name", {
+          required: true,
+          validate: (name) => isUniqueName(name, item?.id),
+        })}
       />
       {errors.name && (
         <p className="text-red-500 text-sm">
