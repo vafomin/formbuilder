@@ -3,10 +3,11 @@ import Button from "../../button";
 import { useStore } from "../../../hooks/useStore";
 import { useForm, useFieldArray } from "react-hook-form";
 import { FaTrash } from "react-icons/fa";
+import { generateUid } from "../../../utils";
 
 const AddList = ({ el, item, onClose }) => {
   const { formStore } = useStore();
-  const { addItem, setItem, formLength } = formStore;
+  const { setItem, addItem, isUniqueName } = formStore;
 
   const {
     register,
@@ -28,7 +29,7 @@ const AddList = ({ el, item, onClose }) => {
 
   const onSave = (data) => {
     const field = {
-      id: item ? item.id : formLength + 1,
+      id: item ? item.id : generateUid(),
       element: item ? item?.element : el,
       label: data.label,
       name: data.name,
@@ -48,8 +49,14 @@ const AddList = ({ el, item, onClose }) => {
         name="name"
         placeholder="Enter name..."
         hasErrors={errors.name ? true : false}
-        {...register("name", { required: true })}
+        {...register("name", { required: true, validate: isUniqueName })}
       />
+      {errors.name && (
+        <p className="text-red-500 text-sm">
+          Name is required and must be unique
+        </p>
+      )}
+
       <Input
         label="Label"
         name="label"

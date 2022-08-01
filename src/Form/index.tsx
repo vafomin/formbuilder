@@ -8,22 +8,17 @@ import { IForm } from "../types";
 
 const Form = ({ formRef }) => {
   const { formStore } = useStore();
-  const { form, formLength } = formStore;
+  const { formFields, formButtons, formIsEmpty } = formStore;
 
   return (
     <main className="flex flex-col gap-4 p-10 w-96 sm:mr-4/12">
       <h1 className="text-4xl">Form</h1>
       <div className="flex">
-        {formLength === 0 ? (
+        {formIsEmpty ? (
           <h1>Looks like you haven't created a form yet...</h1>
         ) : (
-          <form
-            action=""
-            id="form"
-            className="flex flex-col gap-4 w-96"
-            ref={formRef}
-          >
-            {form.map((item: IForm, index: number) => {
+          <div id="form" className="flex flex-col gap-4 w-96" ref={formRef}>
+            {formFields.map((item: IForm, index: number) => {
               switch (item.element) {
                 case "input":
                   return (
@@ -59,13 +54,10 @@ const Form = ({ formRef }) => {
               }
             })}
 
-            {form.map(
-              (item: IForm, index: number) =>
-                item.element === "button" && (
-                  <Button key={`form_element_${index}`} label={item.label} />
-                )
-            )}
-          </form>
+            {formButtons.map((item: IForm, index: number) => (
+              <Button key={`form_element_${index}`} label={item.label} />
+            ))}
+          </div>
         )}
       </div>
     </main>

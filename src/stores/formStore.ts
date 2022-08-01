@@ -1,4 +1,4 @@
-import { IForm , FormProps} from '../types';
+import { IForm, FormProps } from "../types";
 import { makeAutoObservable } from "mobx";
 
 class FormStore {
@@ -13,15 +13,34 @@ class FormStore {
   };
 
   setItem = (item: IForm) => {
-    this.form[item.id - 1] = item;
-  }
+    const index = this.form.findIndex((i) => i.id === item.id);
+    this.form[index] = item;
+  };
 
-  deleteItem = (id: number) => {
+  deleteItem = (id: string) => {
     this.form = this.form.filter((item) => item.id !== id);
   };
 
-  get formLength() {
-    return this.form.length;
+  isUniqueName = (name: string) => {
+    if (this.formIsEmpty) return true;
+    const index = this.form.findIndex((item) => item.name === name);
+    return index >= 0 ? false : true;
+  };
+
+  getItemById = (id: string) => {
+    return this.form.find((item) => item.id === id);
+  };
+
+  get formIsEmpty() {
+    return this.form.length === 0;
+  }
+
+  get formFields() {
+    return this.form.filter((item) => item.element !== "button");
+  }
+
+  get formButtons() {
+    return this.form.filter((item) => item.element === "button");
   }
 }
 

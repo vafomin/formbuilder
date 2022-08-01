@@ -1,6 +1,6 @@
 export interface IForm {
   element: string;
-  id: number;
+  id: string;
   label: string;
   name?: string;
   placeholder?: string;

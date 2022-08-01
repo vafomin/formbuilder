@@ -2,10 +2,11 @@ import Input from "../../input";
 import Button from "../../button";
 import { useStore } from "../../../hooks/useStore";
 import { useForm } from "react-hook-form";
+import { generateUid } from "../../../utils";
 
 const AddButton = ({ el, item, onClose }) => {
   const { formStore } = useStore();
-  const { addItem, setItem, formLength } = formStore;
+  const { addItem, setItem } = formStore;
   const {
     register,
     handleSubmit,
@@ -18,7 +19,7 @@ const AddButton = ({ el, item, onClose }) => {
 
   const onSave = (data) => {
     const field = {
-      id: item ? item.id : formLength + 1,
+      id: item ? item.id : generateUid(),
       element: item ? item?.element : el,
       label: data.label,
     };

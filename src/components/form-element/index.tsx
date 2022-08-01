@@ -1,8 +1,7 @@
 import { FaEdit, FaTrash } from "react-icons/fa";
-import Icon from "./Icon";
+import Icon from "./icon";
 
 type FormElementProps = {
-  id: number;
   name: string;
   type: string;
   onEdit: () => void;
@@ -10,7 +9,6 @@ type FormElementProps = {
 };
 
 const FormElement: React.FC<FormElementProps> = ({
-  id,
   name,
   type,
   onEdit,

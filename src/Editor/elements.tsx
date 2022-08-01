@@ -1,16 +1,15 @@
 import FormElement from "../components/form-element";
 
-const Elements = ({ form, onEdit, onDelete }) => {
+const Elements = ({ formFields, formButtons, onEdit, onDelete }) => {
   return (
     <div>
-      <p className="text-white mb-4">Fields</p>
-      {form &&
-        form.map(
+      {formFields.length > 0 && <p className="text-white mb-4">Fields</p>}
+      {formFields &&
+        formFields.map(
           (item) =>
             item.element !== "button" && (
               <FormElement
                 key={`${item.id}_element_${item.element}`}
-                id={item.id}
                 name={item.name}
                 type={item.element}
                 onEdit={() => onEdit(item.id)}
@@ -18,14 +17,13 @@ const Elements = ({ form, onEdit, onDelete }) => {
               />
             )
         )}
-      <p className="text-white my-4">Buttons</p>
-      {form &&
-        form.map(
+      {formButtons.length > 0 && <p className="text-white my-4">Buttons</p>}
+      {formButtons &&
+        formButtons.map(
           (item) =>
             item.element === "button" && (
               <FormElement
                 key={`${item.id}_element_${item.element}`}
-                id={item.id}
                 name={item.label}
                 type={item.element}
                 onEdit={() => onEdit(item.id)}

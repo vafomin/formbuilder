@@ -18,7 +18,8 @@ const Editor = ({ onDownload }) => {
   const [currentEl, setCurrentEl] = useState("");
 
   const { formStore } = useStore();
-  const { form, formLength, deleteItem } = formStore;
+  const { formFields, formButtons, formIsEmpty, deleteItem, getItemById } =
+    formStore;
 
   const onShowModal = (el?: string) => {
     setIsModalVisible(true);
@@ -31,19 +32,25 @@ const Editor = ({ onDownload }) => {
     setCurrentEl("");
   };
 
-  const onEdit = (id: number) => {
-    setCurrentItem(form[id - 1]);
+  const onEdit = (id: string) => {
+    const item = getItemById(id);
+    setCurrentItem(item);
     onShowModal();
   };
 
-  const onDelete = (id: number) => {
+  const onDelete = (id: string) => {
     deleteItem(id);
   };
 
   return (
     <aside className="flex flex-col w-full sm:w-4/12 sm:fixed sm:right-0 sm:top-0 sm:h-screen bg-slate-700 p-10 overflow-auto">
       <h1 className="text-white text-4xl mb-4">Editor</h1>
-      <Elements form={form} onEdit={onEdit} onDelete={onDelete} />
+      <Elements
+        formFields={formFields}
+        formButtons={formButtons}
+        onEdit={onEdit}
+        onDelete={onDelete}
+      />
 
       <div className="flex flex-col gap-4 mt-4">
         <div className="flex gap-4">
@@ -81,7 +88,7 @@ const Editor = ({ onDownload }) => {
         icon={<FaDownload />}
         className="mt-4"
         onClick={onDownload}
-        disabled={formLength === 0}
+        disabled={formIsEmpty}
       />
 
       <Modal
