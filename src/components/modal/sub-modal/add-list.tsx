@@ -12,6 +12,7 @@ const AddList = ({ el, item, onClose }) => {
   const {
     register,
     control,
+    watch,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -26,6 +27,8 @@ const AddList = ({ el, item, onClose }) => {
     control,
     name: "options",
   });
+
+  const listItems = watch("options");
 
   const onSave = (data) => {
     const field = {
@@ -104,7 +107,11 @@ const AddList = ({ el, item, onClose }) => {
       </div>
 
       <div className="flex flex-col gap-4 pt-4 sm:flex-row">
-        <Button label="Save" onClick={handleSubmit(onSave)} />
+        <Button
+          label="Save"
+          onClick={handleSubmit(onSave)}
+          disabled={listItems.length === 0}
+        />
         <Button label="Close" onClick={onClose} />
       </div>
     </div>
