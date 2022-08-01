@@ -1,5 +1,5 @@
 import { FaEdit, FaTrash } from "react-icons/fa";
-import Icon from "./icon";
+import Icon from "./Icon";
 
 type FormElementProps = {
   name: string;
